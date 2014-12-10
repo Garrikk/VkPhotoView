@@ -105,7 +105,7 @@ public class LoginActivity extends FragmentActivity {
     };
 
     private void startAlbumListActivity() {
-//        startActivity(new Intent(this, AlbumsListActivity.class));
+        startActivity(new Intent(this, AlbumsListActivity.class));
     }
 
     public static class LoginFragment extends android.support.v4.app.Fragment {
