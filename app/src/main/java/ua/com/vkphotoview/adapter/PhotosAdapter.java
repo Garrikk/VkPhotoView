@@ -2,10 +2,6 @@ package ua.com.vkphotoview.adapter;
 
 
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +12,10 @@ import android.widget.ProgressBar;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.List;
 
 import ua.com.vkphotoview.R;
+import ua.com.vkphotoview.utils.DownloadImageTask;
 
 public class PhotosAdapter extends ArrayAdapter<JSONObject> {
 
@@ -43,12 +38,12 @@ public class PhotosAdapter extends ArrayAdapter<JSONObject> {
         View view = null;
         if (convertView == null) {
             LayoutInflater inflator = context.getLayoutInflater();
-            view = inflator.inflate(R.layout.adapter_list_photo_albums, null);
+            view = inflator.inflate(R.layout.adapter_list_photos, null);
 
             final ViewHolder viewHolder = new ViewHolder();
 
-            viewHolder.bar = (ProgressBar) view.findViewById(R.id.progressBarPhoto);
             viewHolder.icon = (ImageView) view.findViewById(R.id.imagePhotoAlbum);
+            viewHolder.bar = (ProgressBar) view.findViewById(R.id.progressBarPhoto);
             view.setTag(viewHolder);
         } else {
             view = convertView;
@@ -56,48 +51,12 @@ public class PhotosAdapter extends ArrayAdapter<JSONObject> {
         final ViewHolder holder = (ViewHolder) view.getTag();
 
         try {
-            new DownloadImageTask((ImageView) view.findViewById(R.id.imagePhotoAlbum),
-                    (ProgressBar) view.findViewById(R.id.progressBarAlbum))
+            new DownloadImageTask(holder.icon, holder.bar)
                     .execute(list.get(position).getString("photo_130"));
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         return view;
-    }
-
-
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ProgressBar bar;
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage, ProgressBar bar) {
-            this.bmImage = bmImage;
-            this.bar = bar;
-        }
-
-        protected void onPreExecute() {
-            bar.setVisibility(View.VISIBLE);
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bar.setVisibility(View.GONE);
-            bmImage.setImageBitmap(result);
-        }
     }
 }

@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import ua.com.vkphotoview.R;
+import ua.com.vkphotoview.utils.DownloadImageTask;
 
 public class PhotoAlbumsAdapter extends ArrayAdapter<JSONObject> {
 
@@ -69,38 +70,4 @@ public class PhotoAlbumsAdapter extends ArrayAdapter<JSONObject> {
 
         return view;
     }
-
-
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ProgressBar bar;
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage, ProgressBar bar) {
-            this.bmImage = bmImage;
-            this.bar = bar;
-        }
-
-        protected void onPreExecute() {
-            bar.setVisibility(View.VISIBLE);
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bar.setVisibility(View.GONE);
-            bmImage.setImageBitmap(result);
-        }
-    }
-
 }
