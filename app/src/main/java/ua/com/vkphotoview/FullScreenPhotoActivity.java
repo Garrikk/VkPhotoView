@@ -30,6 +30,7 @@ public class FullScreenPhotoActivity extends ActionBarActivity {
         icon = (ImageView) findViewById(R.id.imageFullScreenPhoto);
         bar = (ProgressBar) findViewById(R.id.progressFullScreen);
 
-        new DownloadImageTask(icon, bar).execute(getIntent().getExtras().getString("photo"));
+        new DownloadImageTask(icon, bar).
+                execute(getIntent().getExtras().getString("photo"));
     }
 }
