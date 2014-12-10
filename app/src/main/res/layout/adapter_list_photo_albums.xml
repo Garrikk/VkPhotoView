@@ -6,19 +6,19 @@
     <ImageView
         android:layout_width="130dp"
         android:layout_height="90dp"
-        android:id="@+id/imagePhotoAlbum"
+        android:id="@+id/imageAlbum"
         android:layout_gravity="center" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/titlePhotoAlbum"
+        android:id="@+id/titleAlbum"
         android:gravity="center_vertical|left"
         android:paddingLeft="10dp"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/imagePhotoAlbum"
-        android:layout_toEndOf="@+id/imagePhotoAlbum"
-        android:layout_alignBottom="@+id/imagePhotoAlbum" />
+        android:layout_toRightOf="@+id/imageAlbum"
+        android:layout_toEndOf="@+id/imageAlbum"
+        android:layout_alignBottom="@+id/imageAlbum" />
 
     <ProgressBar
         android:layout_width="wrap_content"

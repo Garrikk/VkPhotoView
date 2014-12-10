@@ -35,7 +35,7 @@ public class PhotosAdapter extends ArrayAdapter<JSONObject> {
         protected ImageView icon;
 
         public ViewHolder(View view) {
-            icon = (ImageView) view.findViewById(R.id.imagePhotoAlbum);
+            icon = (ImageView) view.findViewById(R.id.imagePhoto);
             bar = (ProgressBar) view.findViewById(R.id.progressBarPhoto);
         }
     }
@@ -48,10 +48,9 @@ public class PhotosAdapter extends ArrayAdapter<JSONObject> {
         }
         final ViewHolder holder = new ViewHolder(view);
 
-        final JSONObject obj = getItem(position);
         try {
             new DownloadImageTask(holder.icon, holder.bar)
-                    .execute(obj.getString("photo_130"));
+                    .execute(list.get(position).getString("photo_130"));
         } catch (JSONException e) {
             e.printStackTrace();
         }

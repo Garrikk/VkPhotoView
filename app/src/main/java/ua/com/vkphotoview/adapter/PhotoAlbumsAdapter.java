@@ -37,8 +37,8 @@ public class PhotoAlbumsAdapter extends ArrayAdapter<JSONObject> {
         protected ProgressBar bar;
 
         public ViewHolder(View view) {
-            title = (TextView) view.findViewById(R.id.titlePhotoAlbum);
-            icon = (ImageView) view.findViewById(R.id.imagePhotoAlbum);
+            title = (TextView) view.findViewById(R.id.titleAlbum);
+            icon = (ImageView) view.findViewById(R.id.imageAlbum);
             bar = (ProgressBar) view.findViewById(R.id.progressBarAlbum);
         }
     }
@@ -52,11 +52,10 @@ public class PhotoAlbumsAdapter extends ArrayAdapter<JSONObject> {
         }
         final ViewHolder holder = new ViewHolder(view);
 
-        final JSONObject obj = getItem(position);
         try {
-            holder.title.setText(obj.getString("title"));
+            holder.title.setText(list.get(position).getString("title"));
             new DownloadImageTask(holder.icon, holder.bar)
-                    .execute(obj.getString("thumb_src"));
+                    .execute(list.get(position).getString("thumb_src"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
