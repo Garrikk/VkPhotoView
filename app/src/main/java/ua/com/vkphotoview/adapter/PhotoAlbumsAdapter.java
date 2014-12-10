@@ -50,6 +50,7 @@ public class PhotoAlbumsAdapter extends ArrayAdapter<JSONObject> {
 
             viewHolder.title = (TextView) view.findViewById(R.id.titlePhotoAlbum);
             viewHolder.icon = (ImageView) view.findViewById(R.id.imagePhotoAlbum);
+            viewHolder.bar = (ProgressBar) view.findViewById(R.id.progressBarAlbum);
             view.setTag(viewHolder);
         } else {
             view = convertView;
@@ -58,8 +59,7 @@ public class PhotoAlbumsAdapter extends ArrayAdapter<JSONObject> {
         try {
             holder.title.setText(list.get(position).getString("title"));
 
-            new DownloadImageTask((ImageView) view.findViewById(R.id.imagePhotoAlbum),
-                    (ProgressBar) view.findViewById(R.id.progressBarAlbum))
+            new DownloadImageTask(holder.icon,holder.bar)
                     .execute(list.get(position).getString("thumb_src"));
 
 
@@ -75,7 +75,7 @@ public class PhotoAlbumsAdapter extends ArrayAdapter<JSONObject> {
         ProgressBar bar;
         ImageView bmImage;
 
-        public DownloadImageTask(ImageView bmImage,ProgressBar bar) {
+        public DownloadImageTask(ImageView bmImage, ProgressBar bar) {
             this.bmImage = bmImage;
             this.bar = bar;
         }

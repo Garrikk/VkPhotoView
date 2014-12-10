@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">VkPhotoView</string>
+    <string name="title_activity_album_list">AlbumListActivity</string>
+    <string name="title_activity_photo_list">PhotosListActivity</string>
+    <string name="title_activity_full_screen">FullScreenPhotoActivity</string>
 </resources>

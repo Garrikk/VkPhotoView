@@ -84,20 +84,24 @@ public class LoginActivity extends FragmentActivity {
         public void onCaptchaError(VKError captchaError) {
             new VKCaptchaDialog(captchaError).show();
         }
+
         @Override
         public void onTokenExpired(VKAccessToken expiredToken) {
             VKSdk.authorize(sMyScope);
         }
+
         @Override
         public void onAccessDenied(final VKError authorizationError) {
             new AlertDialog.Builder(VKUIHelper.getTopActivity())
                     .setMessage(authorizationError.toString())
                     .show();
         }
+
         @Override
         public void onReceiveNewToken(VKAccessToken newToken) {
             startAlbumListActivity();
         }
+
         @Override
         public void onAcceptUserToken(VKAccessToken token) {
             startAlbumListActivity();
@@ -112,10 +116,12 @@ public class LoginActivity extends FragmentActivity {
         public LoginFragment() {
             super();
         }
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             return inflater.inflate(R.layout.fragment_login, container, false);
         }
+
         @Override
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
@@ -138,17 +144,19 @@ public class LoginActivity extends FragmentActivity {
         public LogoutFragment() {
             super();
         }
+
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             return inflater.inflate(R.layout.fragment_logout, container, false);
         }
+
         @Override
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
             getView().findViewById(R.id.continue_button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ((LoginActivity)getActivity()).startAlbumListActivity();
+                    ((LoginActivity) getActivity()).startAlbumListActivity();
                 }
             });
             getView().findViewById(R.id.logout).setOnClickListener(new View.OnClickListener() {
@@ -156,7 +164,7 @@ public class LoginActivity extends FragmentActivity {
                 public void onClick(View view) {
                     VKSdk.logout();
                     if (!VKSdk.isLoggedIn()) {
-                        ((LoginActivity)getActivity()).showLogin();
+                        ((LoginActivity) getActivity()).showLogin();
                     }
                 }
             });
