@@ -42,7 +42,7 @@ public class PhotosListActivity extends ActionBarActivity {
                 JSONObject photoAlbum = listPhotos.get(position);
                 Intent intent = new Intent(PhotosListActivity.this, FullScreenPhotoActivity.class);
                 try {
-                    intent.putExtra("photo", photoAlbum.getString("photo_130"));
+                    intent.putExtra("photo", photoAlbum.getString("photo_604"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

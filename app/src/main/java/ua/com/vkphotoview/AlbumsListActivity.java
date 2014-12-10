@@ -34,7 +34,7 @@ public class AlbumsListActivity extends ActionBarActivity {
         setContentView(R.layout.activity_album_list);
         new loadPhotoAlbum().execute();
 
-        listViewPhotoAlbums = (ListView) findViewById(R.id.listAlbum);
+        listViewPhotoAlbums = (ListView) findViewById(R.id.listAlbums);
         listViewPhotoAlbums.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 JSONObject photoAlbum = listPhotoAlbums.get(position);
@@ -56,7 +56,8 @@ public class AlbumsListActivity extends ActionBarActivity {
 
     private void getListPhotoAlbums() {
 
-        VKRequest request = new VKRequest("photos.getAlbums", VKParameters.from("need_covers", 1));
+        VKRequest request = new VKRequest("photos.getAlbums",
+                VKParameters.from("need_covers", 1));
         request.executeWithListener(new VKRequest.VKRequestListener() {
             @Override
             public void onComplete(VKResponse response) {
@@ -71,7 +72,7 @@ public class AlbumsListActivity extends ActionBarActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                listViewPhotoAlbums = (ListView) findViewById(R.id.listAlbum);
+                listViewPhotoAlbums = (ListView) findViewById(R.id.listAlbums);
                 PhotoAlbumsAdapter adapter = new PhotoAlbumsAdapter(AlbumsListActivity.this, listPhotoAlbums);
                 listViewPhotoAlbums.setAdapter(adapter);
             }

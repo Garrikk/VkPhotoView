@@ -16,8 +16,8 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
     ProgressBar bar;
     ImageView bmImage;
 
-    public DownloadImageTask(ImageView bmImage, ProgressBar bar) {
-        this.bmImage = bmImage;
+    public DownloadImageTask(ImageView icon, ProgressBar bar) {
+        this.bmImage = icon;
         this.bar = bar;
     }
 
@@ -27,15 +27,15 @@ public class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
 
     protected Bitmap doInBackground(String... urls) {
         String url = urls[0];
-        Bitmap mIcon11 = null;
+        Bitmap image = null;
         try {
             InputStream in = new URL(url).openStream();
-            mIcon11 = BitmapFactory.decodeStream(in);
+            image = BitmapFactory.decodeStream(in);
         } catch (Exception e) {
             Log.e("Error", e.getMessage());
             e.printStackTrace();
         }
-        return mIcon11;
+        return image;
     }
 
     protected void onPostExecute(Bitmap result) {
