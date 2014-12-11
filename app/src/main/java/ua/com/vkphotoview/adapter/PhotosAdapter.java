@@ -1,6 +1,5 @@
 package ua.com.vkphotoview.adapter;
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
